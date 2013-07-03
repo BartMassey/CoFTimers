@@ -1,6 +1,7 @@
 
-//Vikram Ramesh
+//Copyright ©  2013 Vikram Ramesh
 
+//This program is released under the GNU GPL
 
 public class Client {
 
