@@ -19,13 +19,17 @@ import java.awt.Toolkit;
 import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
+import java.awt.Color;
 
 import javax.swing.WindowConstants;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
-public class Client extends JFrame {
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class Client extends JFrame implements ActionListener {
 
 	//create the various GUI elements
 	JLabel d1Label = new JLabel("Ascalon Catacombs");
@@ -58,6 +62,8 @@ public class Client extends JFrame {
 
 	public Client(){
 		initializeBasicUI();
+
+		//more todo client code here
 	}
 
 	public void initializeBasicUI(){
@@ -99,17 +105,32 @@ public class Client extends JFrame {
 		this.add(bottomContainer, BorderLayout.SOUTH);
 		this.add(leftContainer, BorderLayout.WEST);
 		this.add(rightContainer, BorderLayout.EAST);
-		
-
-
-
-
-
 
 		setPreferredSize(dim);
 		pack();
 		setVisible(true);
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+
+		//add overlay functionality
+		//setBackground(new Color(0,0,0,0));
+		//setUndecorated(true);
+		//setAlwaysOnTop(true);
+		
+		//getRootPane().putClientProperty("apple.awt.draggableWindowBackground", false);
+
+		//setOpacity(0);
+
+		//add the action listeners
+		refreshButton.addActionListener((ActionListener) this);
 	}
+
+	public void actionPerformed(ActionEvent e){
+		
+		if (e.getSource() == refreshButton){
+			d1StatusLabel.setText("Refresh works");
+		}
+
+	}//end actionListeners
+
 	
 }
