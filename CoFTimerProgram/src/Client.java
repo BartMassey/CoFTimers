@@ -29,6 +29,11 @@ import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+import java.awt.*;
+import javax.swing.*;
+//import static java.awt.GraphicsDevice.WindowTranslucency.*;
+//import java.awt.GraphicsDevice.WindowTranslucency;
+
 public class Client extends JFrame implements ActionListener {
 
 	//create the various GUI elements
@@ -57,10 +62,12 @@ public class Client extends JFrame implements ActionListener {
 
 	public static void main(String args[]){
 		Client m = new Client();//create an instance of Client
+		
 	}
 	
 
 	public Client(){
+		
 		initializeBasicUI();
 
 		//more todo client code here
@@ -68,7 +75,6 @@ public class Client extends JFrame implements ActionListener {
 
 	public void initializeBasicUI(){
 
-		
 		Toolkit tk = Toolkit.getDefaultToolkit();
 		Dimension dim = new Dimension();
 		dim.setSize(tk.getScreenSize().getWidth()/2, tk.getScreenSize().getHeight()/2);
@@ -111,6 +117,7 @@ public class Client extends JFrame implements ActionListener {
 		setVisible(true);
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
+		
 		//add overlay functionality
 		//setBackground(new Color(0,0,0,0));
 		//setUndecorated(true);
@@ -121,6 +128,9 @@ public class Client extends JFrame implements ActionListener {
 		//setOpacity(0);
 
 		//add the action listeners
+
+
+
 		refreshButton.addActionListener((ActionListener) this);
 	}
 
