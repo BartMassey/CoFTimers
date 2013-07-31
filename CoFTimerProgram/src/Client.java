@@ -56,8 +56,15 @@ public class Client extends JFrame implements ActionListener {
 	JLabel d8StatusLabel = new JLabel("YES");
 	
 	JButton refreshButton = new JButton("Refresh");
-	
+	JLabel selectServerLabel = new JLabel("Select Server");
+	String [] serverNames = {"Anvil Rock", "Blackgate", "Borlis Pass", "Crystal Desert", "Darkhaven",
+				 "Devona's Rest", "Dragonbrand", "Ehmry Bay", "Eredon Terrace",
+				 "Ferguson's Crossing", "Fort Aspenwood", "Gate of Madness", 
+				 "Henge of Denravi", "Isle of Janthir", "Jade Quarry", "Kaineng", "Maguuma",
+				 "Northern Shiverpeaks", "Sanctum of Rail", "Sea of Sorrows", 
+				 "Sorrow's Furnace", "Stormbluff Isle", "Tarnished Coast", "Yak's Bend"};
 
+	JComboBox serverList = new JComboBox(serverNames);
 
 
 	public static void main(String args[]){
@@ -80,7 +87,9 @@ public class Client extends JFrame implements ActionListener {
 		dim.setSize(tk.getScreenSize().getWidth()/2, tk.getScreenSize().getHeight()/2);
 		
 
+		//set up containers for the UI
 
+		//label containers
 		Container leftContainer = new Container();
 		leftContainer.setLayout(new GridLayout(8,1));
 		leftContainer.add(d1Label);
@@ -92,6 +101,7 @@ public class Client extends JFrame implements ActionListener {
 		leftContainer.add(d7Label);
 		leftContainer.add(d8Label);
 		
+		//status containers
 		Container rightContainer = new Container();
 		rightContainer.setLayout(new GridLayout(8,1));
 		rightContainer.add(d1StatusLabel);
@@ -104,7 +114,9 @@ public class Client extends JFrame implements ActionListener {
 		rightContainer.add(d8StatusLabel);
 
 		Container bottomContainer = new Container();
-		bottomContainer.setLayout(new GridLayout(1,1));
+		bottomContainer.setLayout(new GridLayout(1,3));
+		bottomContainer.add(selectServerLabel);
+		bottomContainer.add(serverList);
 		bottomContainer.add(refreshButton);
 
 		
