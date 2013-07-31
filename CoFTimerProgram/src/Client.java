@@ -33,6 +33,8 @@ import java.awt.*;
 import javax.swing.*;
 import java.net.*;
 import java.io.*;
+
+import com.google.gson.JsonArray;
 //import static java.awt.GraphicsDevice.WindowTranslucency.*;
 //import java.awt.GraphicsDevice.WindowTranslucency;
 
@@ -90,11 +92,15 @@ public class Client extends JFrame implements ActionListener {
 		URLConnection yc = worldURL.openConnection();
 		BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
 		
+
+		JSONTokener token = new JSONTokener(in);
 		String inputLine;
 		while ((inputLine = in.readLine()) != null){
 			System.out.println(inputLine);
 		}
 		in.close();
+
+		//JSONObjects and JSONArrays
 	
 	   }catch (Exception e){
 		System.exit(0);
