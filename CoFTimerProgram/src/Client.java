@@ -31,6 +31,8 @@ import java.awt.event.ActionEvent;
 
 import java.awt.*;
 import javax.swing.*;
+import java.net.*;
+import java.io.*;
 //import static java.awt.GraphicsDevice.WindowTranslucency.*;
 //import java.awt.GraphicsDevice.WindowTranslucency;
 
@@ -76,9 +78,29 @@ public class Client extends JFrame implements ActionListener {
 	public Client(){
 		
 		initializeBasicUI();
-
+		sendHTTPRequest();
 		//more todo client code here
 	}
+
+	public void sendHTTPRequest(){
+	
+	try{
+		String baseURL = "https://api.guildwars2.com";
+		URL worldURL = new URL(baseURL + "/v1/world_names.json?lang=en");
+		URLConnection yc = worldURL.openConnection();
+		BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
+		
+		String inputLine;
+		while ((inputLine = in.readLine()) != null){
+			System.out.println(inputLine);
+		}
+		in.close();
+	
+	   }catch (Exception e){
+		System.exit(0);
+	   }
+	}
+
 
 	public void initializeBasicUI(){
 
