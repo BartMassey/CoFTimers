@@ -34,7 +34,8 @@ import javax.swing.*;
 import java.net.*;
 import java.io.*;
 
-import com.google.gson.JsonArray;
+//import com.google.gson.JsonArray;
+
 //import static java.awt.GraphicsDevice.WindowTranslucency.*;
 //import java.awt.GraphicsDevice.WindowTranslucency;
 
@@ -93,7 +94,6 @@ public class Client extends JFrame implements ActionListener {
 		BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
 		
 
-		JSONTokener token = new JSONTokener(in);
 		String inputLine;
 		while ((inputLine = in.readLine()) != null){
 			System.out.println(inputLine);
@@ -101,7 +101,11 @@ public class Client extends JFrame implements ActionListener {
 		in.close();
 
 		//JSONObjects and JSONArrays
-	
+		//added the google gson library, so begin work with that
+		//https://code.google.com/p/google-gson/ 
+		//figure out how to properly access the api contents in the program
+		//why isn't the input statement working
+
 	   }catch (Exception e){
 		System.exit(0);
 	   }
