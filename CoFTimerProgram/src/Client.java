@@ -41,6 +41,7 @@ import java.io.*;
 
 public class Client extends JFrame implements ActionListener {
 
+	final String baseURL = "https://api.guildwars2.com";
 	//create the various GUI elements
 	JLabel d1Label = new JLabel("Ascalon Catacombs");
 	JLabel d2Label = new JLabel("Caudecus's Manor");
@@ -61,7 +62,8 @@ public class Client extends JFrame implements ActionListener {
 	JLabel d8StatusLabel = new JLabel("YES");
 	
 	JButton refreshButton = new JButton("Refresh");
-	JLabel selectServerLabel = new JLabel("Select Server");
+	//JLabel selectServerLabel = new JLabel("Select Server");
+	JButton launchOverlayButton = new JButton("Launch Overlay");
 	String [] serverNames = {"Anvil Rock", "Blackgate", "Borlis Pass", "Crystal Desert", "Darkhaven",
 				 "Devona's Rest", "Dragonbrand", "Ehmry Bay", "Eredon Terrace",
 				 "Ferguson's Crossing", "Fort Aspenwood", "Gate of Madness", 
@@ -88,7 +90,7 @@ public class Client extends JFrame implements ActionListener {
 	public void sendHTTPRequest(){
 	
 	try{
-		String baseURL = "https://api.guildwars2.com";
+		
 		URL worldURL = new URL(baseURL + "/v1/world_names.json?lang=en");
 		URLConnection yc = worldURL.openConnection();
 		BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
@@ -147,8 +149,8 @@ public class Client extends JFrame implements ActionListener {
 
 		Container bottomContainer = new Container();
 		bottomContainer.setLayout(new GridLayout(1,3));
-		bottomContainer.add(selectServerLabel);
 		bottomContainer.add(serverList);
+		bottomContainer.add(launchOverlayButton);
 		bottomContainer.add(refreshButton);
 
 		
@@ -176,6 +178,7 @@ public class Client extends JFrame implements ActionListener {
 
 
 		refreshButton.addActionListener((ActionListener) this);
+		launchOverlayButton.addActionListener((ActionListener) this);
 	}
 
 	public void actionPerformed(ActionEvent e){
