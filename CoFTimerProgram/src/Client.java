@@ -35,6 +35,8 @@ import java.net.*;
 import java.io.*;
 
 //import com.google.gson.JsonArray;
+//import com.google.gson;
+
 
 //import static java.awt.GraphicsDevice.WindowTranslucency.*;
 //import java.awt.GraphicsDevice.WindowTranslucency;
@@ -62,7 +64,7 @@ public class Client extends JFrame implements ActionListener {
 	JLabel d8StatusLabel = new JLabel("YES");
 	
 	JButton refreshButton = new JButton("Refresh");
-	//JLabel selectServerLabel = new JLabel("Select Server");
+	JLabel selectServerLabel = new JLabel("Select Server");
 	JButton launchOverlayButton = new JButton("Launch Overlay");
 	String [] serverNames = {"Anvil Rock", "Blackgate", "Borlis Pass", "Crystal Desert", "Darkhaven",
 				 "Devona's Rest", "Dragonbrand", "Ehmry Bay", "Eredon Terrace",
@@ -84,9 +86,11 @@ public class Client extends JFrame implements ActionListener {
 		
 		initializeBasicUI();
 		sendHTTPRequest();
+		refresh(1001, 22, "A1182080-2599-4ACC-918E-A3275610602B");
 		//more todo client code here
 	}
 
+	//use this method to initially load the world/server/event ids TODO
 	public void sendHTTPRequest(){
 	
 	try{
@@ -98,7 +102,7 @@ public class Client extends JFrame implements ActionListener {
 
 		String inputLine;
 		while ((inputLine = in.readLine()) != null){
-			System.out.println(inputLine);
+			//System.out.println(inputLine);
 		}
 		in.close();
 
@@ -111,6 +115,52 @@ public class Client extends JFrame implements ActionListener {
 	   }catch (Exception e){
 		System.exit(0);
 	   }
+	}
+
+	//every time program refreshes to repull data, use this
+	public void refresh(int worldID, int mapID, String eventID){
+
+		//anvil rock id: 1001
+		//fireheart rise id: 22
+		//cof event prereq id: A1182080-2599-4ACC-918E-A3275610602B
+
+		//retrieve /events using the information from above. This information is obtained in the
+		//getHTPPRequest method
+		String eventString = "";
+		try{
+			URL worldURL = new URL(baseURL + "/v1/events.json?world_id=" + worldID + "&map_id=" + mapID);
+			URLConnection yc = worldURL.openConnection();
+			BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
+
+			String resultString;
+			while ((resultString = in.readLine()) != null){
+				//System.out.println(resultString);
+				eventString += resultString;
+			}
+			in.close();
+		}catch(Exception e){
+			System.exit(0);
+		}
+		
+		//System.out.println(eventString);
+		//System.out.println(eventString.charAt(eventString.indexOf("A1182080-2599-4ACC-918E-A3275610602B") + 47));
+
+		//check to make sure eventID is correct
+		if (eventString.indexOf(eventID) == -1){
+			System.out.println("Event ID is not valid");
+		}else{
+
+			char status = eventString.charAt(eventString.indexOf(eventID) + 47);
+			System.out.println(status);
+
+			if (status == 'S'){
+				d5StatusLabel.setText("Open");
+			}else if(status == 'A'){
+				d5StatusLabel.setText("Event Up");
+			}else{
+				d5StatusLabel.setText("Closed");
+			}
+		}
 	}
 
 
@@ -148,7 +198,8 @@ public class Client extends JFrame implements ActionListener {
 		rightContainer.add(d8StatusLabel);
 
 		Container bottomContainer = new Container();
-		bottomContainer.setLayout(new GridLayout(1,3));
+		bottomContainer.setLayout(new GridLayout(1,4));
+		bottomContainer.add(selectServerLabel);
 		bottomContainer.add(serverList);
 		bottomContainer.add(launchOverlayButton);
 		bottomContainer.add(refreshButton);
