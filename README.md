@@ -5,7 +5,10 @@ Copyright © 2013 Vikram Ramesh
 For more information about the license, please see COPYING.txt
 
 **Name**: Vikram Ramesh
+
 **Contact Information**: vikram132@gmail.com
+
+
 
 This is a simple Java project that will pull data about dynamic events from the Guild Wars 2 API,
 and determine whether or not various dungeons and temples are open or closed. It works by using the
@@ -33,8 +36,9 @@ Download the files from [this github](https://github.com/vikram-r/CoFTimers)
 
 Compile using Java 6 or higher. (May work for lower versions, but untested and unstable. Use at own risk)
 
-Linux Commands: javac Client.java
-       	        java Client
+javac Client.java
+
+java Client
 
 
 
