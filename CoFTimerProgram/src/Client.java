@@ -45,6 +45,8 @@ import java.io.*;
 
 public class Client extends JFrame implements ActionListener {
 
+	private static final long serialVersionUID = 1L;
+
 	final String baseURL = "https://api.guildwars2.com";
 	//create the various GUI elements
 	JLabel d1Label = new JLabel("Temple of Balthazar");
@@ -72,7 +74,7 @@ public class Client extends JFrame implements ActionListener {
 				 "Northern Shiverpeaks", "Sanctum of Rall", "Sea of Sorrows", 
 				 "Sorrow's Furnace", "Stormbluff Isle", "Tarnished Coast", "Yak's Bend"};
 
-	JComboBox serverList = new JComboBox(serverNames);
+	JComboBox<String> serverList = new JComboBox<String>(serverNames);
 	
 	Map<String, Integer> serverCodes = new HashMap<String,Integer>();
 
